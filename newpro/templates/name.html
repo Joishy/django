@@ -1,0 +1,14 @@
+<html>
+<head>
+<title>My Form</title>
+</head>
+<body>
+<h2> Welcome </h2>
+<h4>Please enter the details</h4>
+<form action="/your-name/" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>
