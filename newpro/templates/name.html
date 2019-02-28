@@ -5,10 +5,12 @@
 <body>
 <h2> Welcome </h2>
 <h4>Please enter the details</h4>
-<form action="/your-name/" method="post">
+<form action="" method="post">
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="Submit">
 </form>
+<h3> The HostName {{ Hostname }} </h3>
+<h4> The Package {{ Package }} </h4>
 </body>
 </html>

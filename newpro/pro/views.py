@@ -6,7 +6,7 @@ from django.shortcuts import render
 # Create your views here.
 from django.http import HttpResponse
 from django.shortcuts import render
-
+from django.template import loader
 from .forms import NameForm
 
 def get_name(request):
@@ -16,10 +16,12 @@ def get_name(request):
         form = NameForm(request.POST)
         # check whether it's valid:
         if form.is_valid():
-            # process the data in form.cleaned_data as required
-            # ...
-            # redirect to a new URL:
-            return HttpResponseRedirect('/thanks/')
+            Hostname = form.cleaned_data.get('your_name')
+            Package = form.cleaned_data.get('your_package')
+            context = {'Hostname':Hostname,'Package':Package}
+            return render(request, 'name.html',context)
+            #template = loader.get_template('showdata.html')
+            #return HttpResponseRedirect(template.render(context,request))
 
     # if a GET (or any other method) we'll create a blank form
     else:
