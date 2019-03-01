@@ -19,6 +19,17 @@ def get_name(request):
             Hostname = form.cleaned_data.get('your_name')
             Package = form.cleaned_data.get('your_package')
             context = {'Hostname':Hostname,'Package':Package}
+            import os
+            f = open( '/root/hostname', 'w+' )
+            f.write( Hostname )
+            f.close()
+            f = open( '/root/indata', 'w+' )
+            f.write( Package )
+            f.close()  
+            cmd = 'ansible-playbook /hostname.yml'
+            os.system(cmd)
+            cmd1 = 'ansible-playbook /install.yml'
+            os.system(cmd1)
             return render(request, 'name.html',context)
             #template = loader.get_template('showdata.html')
             #return HttpResponseRedirect(template.render(context,request))
